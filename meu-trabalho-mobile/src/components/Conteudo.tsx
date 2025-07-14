@@ -1,6 +1,11 @@
 // src/components/Conteudo.tsx
 import '../App.css';
 
+//Função adicionada em um escopo global - fora de quaisquer componete
+export function renderizarMensagem() {
+    return <p>Texto gerado por uma função de renderização.</p>;
+}
+
 function Conteudo() {
     function mostrarAlerta(){
         alert("Você clicou no botão!");
@@ -22,7 +27,7 @@ function Conteudo() {
         <button onClick={executarAcao}>
             Executar Ação
         </button>
-        
+
     </div>
   );
 }

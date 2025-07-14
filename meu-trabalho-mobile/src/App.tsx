@@ -7,16 +7,19 @@ import { useState } from 'react'
 
 import './App.css' // Importa os estilos do CSS que serão adicionados ao React
 
-// Importa o componente do Exercício 02
+// Importando o componente do Exercício 02
 import Ex002 from './components/Ex002';
 
-// Importa o componente Mensagem - Exercício 03
+// Importando o componente Mensagem - Exercício 03
 import Mensagem from './components/Mensagem';
 
 // Importando os componentes - Excício 04
 import Cabecalho from './components/Cabecalho';
 import Conteudo from './components/Conteudo';
 import Rodape from './components/Rodape';
+
+//Importando função renderizarMensagem de Conteudo.tsx
+import {renderizarMensagem} from './components/Conteudo';
 
 //Função principal que retorna o JSX da aplicação (componente principal)
 function App() {
@@ -30,11 +33,14 @@ function App() {
 
       {/* Usa o componente Mensagem */}
       <Mensagem />
-      
+
       {/*Usa componentes do Exercício 04*/}
       <Cabecalho />
       <Conteudo />
       <Rodape />
+
+      {/*Usa função renderizarMensage de Conteudo - Exercicio 07*/}
+      {renderizarMensagem()}
     </div>
   )
 }
