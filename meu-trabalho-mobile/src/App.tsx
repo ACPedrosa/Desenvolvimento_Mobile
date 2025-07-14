@@ -21,6 +21,11 @@ import Rodape from './components/Rodape';
 //Importando função renderizarMensagem de Conteudo.tsx
 import {renderizarMensagem} from './components/Conteudo';
 
+// Importando os componentes - Excício 08
+import Topo from './components/Topo';
+import Meio from './components/Meio';
+import Base from './components/Base';
+
 //Função principal que retorna o JSX da aplicação (componente principal)
 function App() {
   return ( //O conteúdo visual do componente é adicionado nesse return. Como o corpo de um HTML
@@ -41,6 +46,11 @@ function App() {
 
       {/*Usa função renderizarMensage de Conteudo - Exercicio 07*/}
       {renderizarMensagem()}
+
+      {/*Usa componetes do Exercicio 08*/}
+      <Topo />
+      <Meio />
+      <Base />
     </div>
   )
 }
