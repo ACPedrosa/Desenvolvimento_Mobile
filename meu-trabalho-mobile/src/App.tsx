@@ -13,6 +13,11 @@ import Ex002 from './components/Ex002';
 // Importa o componente Mensagem - Exercício 03
 import Mensagem from './components/Mensagem';
 
+// Importando os componentes - Excício 04
+import Cabecalho from './components/Cabecalho';
+import Conteudo from './components/Conteudo';
+import Rodape from './components/Rodape';
+
 //Função principal que retorna o JSX da aplicação (componente principal)
 function App() {
   return ( //O conteúdo visual do componente é adicionado nesse return. Como o corpo de um HTML
@@ -25,6 +30,11 @@ function App() {
 
       {/* Usa o componente Mensagem */}
       <Mensagem />
+      
+      {/*Usa componentes do Exercício 04*/}
+      <Cabecalho />
+      <Conteudo />
+      <Rodape />
     </div>
   )
 }

@@ -1,7 +1,5 @@
 // src/components/Ex002.tsx
 
-import React from 'react'; //importação do React
-
 function Ex002() {
     //declaração de variável
     const nome = "Ana";
