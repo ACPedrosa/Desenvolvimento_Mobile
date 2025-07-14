@@ -1,7 +1,15 @@
 // src/components/Conteudo.tsx
+import '../App.css';
+
 function Conteudo() {
   return (
-    <p>Este é o conteúdo principal.</p>
+    <div>
+        <p>Este é o conteúdo principal.</p>
+        {/* Botão com função inline no onClick */}
+        <button onClick={() => alert("Você clicou no botão!")}>
+            Mostrar Alerta
+        </button>
+    </div>
   );
 }
 
