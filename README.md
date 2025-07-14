@@ -15,7 +15,7 @@ O objetivo principal é dar os primeiros passos com **React**, aprendendo concei
 
 ## Exercícios Realizados
 
-| Nº | Tema                                        | Descrição                                                                 |
+| Nº | Exercício                                   | Descrição                                                                 |
 |----|---------------------------------------------|--------------------------------------------------------------------------|
 | 1  | Estrutura do Projeto                        | Criação do projeto com Vite e React, estrutura básica com comentários    |
 | 2  | JSX com Expressões                          | Uso de variáveis dentro do JSX                                           |
@@ -26,7 +26,7 @@ O objetivo principal é dar os primeiros passos com **React**, aprendendo concei
 | 7  | Função de Renderização                      | Função que retorna JSX e é usada no componente principal                 |
 | 8  | Layout com Múltiplos Componentes            | Página montada com componentes Topo, Meio e Base                         |
 
-## 🧑‍💻 Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
 - React
 - Vite
