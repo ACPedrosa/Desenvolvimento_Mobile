@@ -7,12 +7,24 @@ import { useState } from 'react'
 
 import './App.css' // Importa os estilos do CSS que serão adicionados ao React
 
+// Importa o componente do Exercício 02
+import Ex002 from './components/Ex002';
+
+// Importa o componente Mensagem - Exercício 03
+import Mensagem from './components/Mensagem';
+
 //Função principal que retorna o JSX da aplicação (componente principal)
 function App() {
   return ( //O conteúdo visual do componente é adicionado nesse return. Como o corpo de um HTML
     <div>
       {/* div com o título da aplicação, */}
       <h1>Meu primeiro app React</h1>
+
+      {/* Usa o componente Ex002 */}
+      <Ex002 />
+
+      {/* Usa o componente Mensagem */}
+      <Mensagem />
     </div>
   )
 }
