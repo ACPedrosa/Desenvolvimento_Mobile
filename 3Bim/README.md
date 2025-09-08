@@ -16,16 +16,27 @@ Este projeto contém  atividades desenvolvidas em **React Native** com **TypeScr
 O projeto foi organizado da seguinte forma: 
 
 meuApp/
+
 ├── src/
+
 │   ├── components/
-│   │   ├── Ex001/
+
+│      ├── Ex001/
+
 │   │   │   └── Greeting.tsx      // Componente que usa props.
+
 │   │   ├── Ex002/
+
 │   │   │   └── Counter.tsx       // Componente que gerencia o estado.
+
 │   │   ├── Ex003/
+
 │   │   │   └── AlignmentPractice.tsx // Componente que demonstra alinhamentos.
+
 │   │   ├── Ex004/
+
 │   │   │   └── Sizing.tsx        // Componente que compara tamanhos fixos vs. dinâmicos.
+
 │   ├── App.tsx                   // Tela principal que renderiza todos os 
 
 O App.tsx, é o arquivo principal que chama os outros componentes da atividade.
