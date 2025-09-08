@@ -48,11 +48,8 @@ const Sizing = () => {
 
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Imagem Responsiva</Text>
-        <Text style={styles.description}>
-          Tamanho calculado com base na largura da tela
-        </Text>
         <Image
-          source={{ uri: 'https://imgs.search.brave.com/cIZcFnszq6dnj1qi5UQCyt9v0b_dv-2x1-Woew0E2eo/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9odHRw/Mi5tbHN0YXRpYy5j/b20vRF9OUV9OUF85/MTkyOTAtQ0JUNTE4/NjAwMjQ5NDBfMTAy/MDIyLU8ud2VicA' }}
+          source={{ uri: 'https://imgs.search.brave.com/YeVbeIGdS_VezxhB4v_tvyrJLNoyKZ6hXROobnLUw8s/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9ici5t/YXN0ZXJhcG9sbG9u/LmNvbS93cC1jb250/ZW50L3VwbG9hZHMv/MjAyNC8xMC9BLWNh/bWEtZGUtVmFuLUdv/Z2gtZW0tQXJsZXMt/JUUyJTgwJTkzLVZh/bi1Hb2doLS0xMDI0/eDc5NC5qcGc' }}
           style={{
             width: imageWidth,
             height: imageHeight,
