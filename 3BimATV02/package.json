@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "@react-native-community/slider": "5.0.1",
+    "@react-native-picker/picker": "2.11.1",
+    "expo": "^54.0.12"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.0",
+    "@types/react-native": "^0.73.0",
+    "typescript": "~5.9.2"
+  }
+}
