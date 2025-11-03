@@ -1,34 +1,205 @@
 // -------------- Imports --------------
-import React, { Component } from "react";
-import { View, Text, StyleSheet} from "react-native";
-import { withSafeAreaInsets } from "react-native-safe-area-context";
+import React, { useState } from "react";
+import { Alert, KeyboardAvoidingView, Platform } from "react-native";
+import { StackNavigationProp } from "@react-navigation/stack";
 
-// -------------- Definir tipos - Props --------------
+/* -------------- Import dos Estilos -------------- */
+import {
+  Background,
+  Header,
+  HeaderTitle,
+  Container,
+  AreaInput,
+  Input,
+  SubmitButton,
+  SubmitText,
+  ErrorText,
+  BackButton,
+  BackButtonText,
+} from "./styles";
 
-type SignUpProps = Record<string, never>;
+type AuthStackParamList = {
+  SignIn: undefined;
+  SignUp: undefined;
+};
 
-type SignUpState = Record<string, never>;
+type SignUpProps = {
+  navigation: StackNavigationProp<AuthStackParamList, "SignUp">;
+};
 
-/* -------------- Criação de Classes -------------- */
+const SignUp: React.FC<SignUpProps> = ({ navigation }) => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
-export default class SignUp extends Component<SignUpProps, SignUpState>{
+  const [errors, setErrors] = useState({
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
 
-    render(){
-        return(
-            <View style={styles.container}>
-                <Text>Tela de Cadastro</Text>
-                
-            </View>
-        );
+  const handleNameChange = (text: string) => {
+    setName(text);
+    setErrors((prev) => ({
+      ...prev,
+      name:
+        !text.trim()
+          ? "O nome é obrigatório"
+          : text.trim().length < 5
+          ? "O nome deve ter no mínimo 5 caracteres"
+          : "",
+    }));
+  };
+
+  const handleEmailChange = (text: string) => {
+    setEmail(text);
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    setErrors((prev) => ({
+      ...prev,
+      email:
+        !text.trim()
+          ? "O email é obrigatório"
+          : !emailRegex.test(text)
+          ? "Email inválido"
+          : "",
+    }));
+  };
+
+  const handlePasswordChange = (text: string) => {
+    setPassword(text);
+    setErrors((prev) => ({
+      ...prev,
+      password:
+        !text
+          ? "A senha é obrigatória"
+          : text.length < 8
+          ? "A senha deve ter no mínimo 8 caracteres"
+          : "",
+      confirmPassword:
+        confirmPassword && text !== confirmPassword
+          ? "As senhas não coincidem"
+          : prev.confirmPassword,
+    }));
+  };
+
+  const handleConfirmPasswordChange = (text: string) => {
+    setConfirmPassword(text);
+    setErrors((prev) => ({
+      ...prev,
+      confirmPassword:
+        !text
+          ? "Confirme sua senha"
+          : text !== password
+          ? "As senhas não coincidem"
+          : "",
+    }));
+  };
+
+  const handleSignUp = async () => {
+    if (Object.values(errors).some((e) => e !== "")) return;
+
+    setLoading(true);
+    try {
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+      Alert.alert("Sucesso", "Cadastro realizado com sucesso!");
+      navigation.goBack();
+    } catch {
+      Alert.alert("Erro", "Não foi possível realizar o cadastro.");
+    } finally {
+      setLoading(false);
     }
-}
+  };
 
-/* -------------- Criação dos Estilos -------------- */
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: "white",
-        alignItems: "center",
-        justifyContent: "center"
-    }
-})
+  const isFormInvalid =
+    !name.trim() ||
+    !email.trim() ||
+    !password ||
+    !confirmPassword ||
+    Object.values(errors).some((e) => e !== "");
+
+  return (
+    <KeyboardAvoidingView
+      style={{ flex: 1 }}
+      behavior={Platform.OS === "ios" ? "padding" : undefined}
+      enabled
+    >
+      <Background>
+        <Header>
+            <BackButton onPress={() => navigation.goBack()}>
+                <BackButtonText> ← </BackButtonText>
+            </BackButton>
+
+            <HeaderTitle>Voltar</HeaderTitle>
+        </Header>
+        <Container>
+          <AreaInput>
+            <Input
+              placeholder="Nome"
+              autoCorrect={false}
+              returnKeyType="next"
+              value={name}
+              onChangeText={handleNameChange}
+              autoCapitalize="words"
+            />
+            {errors.name ? <ErrorText>{errors.name}</ErrorText> : null}
+          </AreaInput>
+
+          <AreaInput>
+            <Input
+              placeholder="Seu email"
+              value={email}
+              onChangeText={handleEmailChange}
+              keyboardType="email-address"
+              autoCapitalize="none"
+              autoCorrect={false}
+              returnKeyType="next"
+            />
+            {errors.email ? <ErrorText>{errors.email}</ErrorText> : null}
+          </AreaInput>
+
+          <AreaInput>
+            <Input
+              placeholder="Senha"
+              value={password}
+              onChangeText={handlePasswordChange}
+              secureTextEntry
+              autoCapitalize="none"
+              autoCorrect={false}
+              returnKeyType="next"
+            />
+            {errors.password ? <ErrorText>{errors.password}</ErrorText> : null}
+          </AreaInput>
+
+          <AreaInput>
+            <Input
+              placeholder="Confirme a senha"
+              value={confirmPassword}
+              onChangeText={handleConfirmPasswordChange}
+              secureTextEntry
+              autoCapitalize="none"
+              autoCorrect={false}
+              returnKeyType="go"
+              onSubmitEditing={handleSignUp}
+            />
+            {errors.confirmPassword ? (
+              <ErrorText>{errors.confirmPassword}</ErrorText>
+            ) : null}
+          </AreaInput>
+
+          <SubmitButton
+            activeOpacity={0.8}
+            disabled={loading || isFormInvalid}
+            onPress={handleSignUp}
+          >
+            <SubmitText>{loading ? "Cadastrando..." : "Cadastrar"}</SubmitText>
+          </SubmitButton>
+        </Container>
+      </Background>
+    </KeyboardAvoidingView>
+  );
+};
+
+export default SignUp;

@@ -1,34 +1,71 @@
-// -------------- Imports --------------
-import React, { Component } from "react";
-import { View, Text, StyleSheet} from "react-native";
-import { withSafeAreaInsets } from "react-native-safe-area-context";
+import React from 'react';
+import { KeyboardAvoidingView, Platform } from 'react-native';
+import type { StackScreenProps } from '@react-navigation/stack';
 
-// -------------- Definir tipos - Props --------------
+import {
+  Background,
+  Container,
+  Logo,
+  AreaInput,
+  Input,
+  SubmitButton,
+  SubmitText,
+  Link,
+  LinkText,
+} from './styles';
 
-type SignInProps = Record<string, never>;
+type AuthStackParamList = {
+  SignIn: undefined;
+  SignUp: undefined;
+};
 
-type SignState = Record<string, never>;
+type Props = StackScreenProps<AuthStackParamList, 'SignIn'>;
 
-/* -------------- Criação de Classes -------------- */
+export default class SignIn extends React.Component<Props> {
+  render() {
+    const { navigation } = this.props;
 
-export default class SignIn extends Component<SignInProps, SignState>{
+    return (
+      <KeyboardAvoidingView
+        style={{ flex: 1 }}
+        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+        enabled
+      >
+        <Background>
+          <Container>
 
-    render(){
-        return(
-            <View style={styles.container}>
-                <Text>Tela de Login</Text>
+            <Logo source={require('../../../assets/Icone1.png')} />
 
-            </View>
-        );
-    }
+            <AreaInput>
+              <Input
+                placeholder="Email"
+                autoCapitalize="none"
+                autoCorrect={false}
+                keyboardType="email-address"
+                returnKeyType="next"
+              />
+            </AreaInput>
+
+            <AreaInput>
+              <Input
+                placeholder="Senha"
+                secureTextEntry
+                autoCapitalize="none"
+                autoCorrect={false}
+                returnKeyType="go"
+              />
+            </AreaInput>
+
+            <SubmitButton activeOpacity={0.8} onPress={() => { /* TODO: autenticar */ }}>
+              <SubmitText>Acessar</SubmitText>
+            </SubmitButton>
+
+            <Link onPress={() => navigation.navigate('SignUp')}>
+              <LinkText>Criar uma conta!</LinkText>
+            </Link>
+          </Container>
+        </Background>
+      </KeyboardAvoidingView>
+    );
+  }
 }
-
-/* -------------- Criação dos Estilos -------------- */
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: "white",
-        alignItems: "center",
-        justifyContent: "center"
-    }
-})
